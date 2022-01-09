@@ -18,7 +18,8 @@ class BooksController < ApplicationController
       @books = Book.all
       @book = Book.new(book_params)
       if @book.save
-      redirect_to books_path(@book.id)
+      flash[:notice] = "Book was successfully created."
+      redirect_to book_path(@book.id)
         
       else
         render 'index'
@@ -30,7 +31,8 @@ class BooksController < ApplicationController
       @books = Book.all
       @book = Book.find(params[:id])
        if @book.update(book_params)
-      redirect_to books_path(@book.id)
+      flash[:notice] = "Book was successfully updated"
+      redirect_to book_path(@book.id)
       
        else
         render 'edit'
